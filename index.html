@@ -3,71 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Abaya Hub UAE | Premium Boutique</title>
+    
+    <title>Abaya Hub Uae | Best Abaya Wholesaler in UAE To Worldwide</title>
+    <meta name="description" content="Abaya Hub Uae - Premium Embroidery, Stone, Beading & Custom Designed Abayas in UAE & Dubai. Retail & Wholesale.">
+    <meta name="keywords" content="Abaya Hub Uae, Abaya wholesaler, dubai abaya, custom abaya uae, embroidery abaya, wholesale abaya dubai">
+    <meta name="author" content="Abaya Hub Uae">
+    
+    <meta property="og:title" content="Abaya Hub Uae | Premium Boutique & Best Abaya Wholesaler in Uae">
+    <meta property="og:description" content="Best Custom & Wholesale Abaya in UAE and Dubai. Worldwide delivery.">
+
+    <!-- APP & SEARCH ENGINE ICONS -->
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="shortcut icon" type="image/png" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+    <meta name="theme-color" content="#050505">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MODERN ABAYA">
+
+    <!-- PWA WEB MANIFEST -->
+    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22MODERN%20ABAYA%20DUBAI%22%2C%22short_name%22%3A%22MODERN%20ABAYA%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23050505%22%2C%22theme_color%22%3A%22%23f4aaff%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22icon.png%22%2C%22sizes%22%3A%22192x192%20512x512%22%2C%22type%22%3A%22image%2Fpng%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Tenor+Sans&family=Cairo:wght@300;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
-        :root { --primary-pink: #f4aaff; --deep-pink: #ff00ff; --black: #050505; --text-gradient: linear-gradient(180deg, #ffffff 0%, #f4aaff 100%); }
+        :root { 
+            --primary-pink: #f4aaff; 
+            --deep-pink: #ff00ff; 
+            --black: #050505; 
+            --text-gradient: linear-gradient(180deg, #ffffff 0%, #f4aaff 100%); 
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tenor Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
         
-        html, body { overflow-x: hidden; width: 100%; position: relative; touch-action: manipulation; background-color: var(--black); color: white; scroll-behavior: smooth; }
+        html, body { overflow-x: hidden; width: 100%; min-height: 100vh; position: relative; touch-action: manipulation; background-color: var(--black); color: white; scroll-behavior: smooth; }
         .rtl { direction: rtl; font-family: 'Cairo', sans-serif !important; }
 
         /* PRELOADER */
         #preloader { position: fixed; inset: 0; background: var(--black); z-index: 9999; display: flex; justify-content: center; align-items: center; }
         .loader-icon { width: auto; max-width: 150px; opacity: 0; transform: scale(0.8); }
 
-        /* Navigation Header */
+        /* NAVIGATION */
         nav { padding: 12px 5%; position: fixed; width: 100%; top: 0; z-index: 1000; background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(244,170,255,0.1); display: flex; justify-content: space-between; align-items: center; }
-        .logo-img { height: 40px; }
+        .logo-img { height: 40px; width: auto; object-fit: contain; }
         .nav-right { display: flex; gap: 8px; align-items: center; }
         .social-links { display: flex; gap: 10px; align-items: center; }
         .social-links a { color: var(--primary-pink); font-size: 17px; }
         #arBtn { background: transparent; color: var(--primary-pink); border: 1px solid var(--primary-pink); padding: 4px 10px; border-radius: 5px; font-size: 11px; cursor: pointer; }
 
-        /* --- THE PERMANENTLY LOCKED STICKY BAR --- */
-        .sticky-locked-header { 
-            position: fixed; 
-            top: 65px; 
-            left: 0;
-            width: 100%;
-            z-index: 950; 
-            background: var(--black); 
-            padding: 15px 5% 5px; 
-            border-bottom: 1px solid rgba(244,170,255,0.1); 
-        }
+        /* STICKY HEADER & SEARCH */
+        .sticky-locked-header { position: fixed; top: 65px; left: 0; width: 100%; z-index: 950; background: var(--black); padding: 15px 5% 5px; border-bottom: 1px solid rgba(244,170,255,0.1); }
         .search-box { width: 100%; max-width: 500px; padding: 10px 20px; border-radius: 50px; border: 1px solid var(--primary-pink); background: #111; color: white; outline: none; margin-bottom: 10px; font-size: 14px; display: block; margin-left: auto; margin-right: auto; }
         .category-bar { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none; }
+        .category-bar::-webkit-scrollbar { display: none; }
         .cat-btn { padding: 6px 18px; border-radius: 20px; border: 1px solid var(--primary-pink); background: transparent; color: white; white-space: nowrap; cursor: pointer; font-size: 11px; }
         .cat-btn.active { background: var(--primary-pink); color: black; font-weight: bold; }
 
-        /* Hero Area Spacing (Adjusted for Fixed Header) */
+        /* HERO AREA */
         .hero-area { padding: 180px 5% 10px; text-align: center; position: relative; }
         .hero-dynamic-container { position: relative; width: 100%; height: 230px; display: flex; justify-content: center; align-items: center; }
-        
         #welcomeMessage { position: absolute; width: 100%; opacity: 0; transform: translateY(20px); z-index: 5; pointer-events: none; }
-        .welcome-title { font-family: 'Cinzel', serif; font-size: 22px; letter-spacing: 3px; background: var(--text-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
+        .welcome-title { font-family: 'Cinzel', serif; font-size: 22px; letter-spacing: 2px; background: var(--text-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .slider-wrapper { width: 100%; height: 220px; overflow: hidden; border-radius: 20px; position: absolute; border: 1px solid rgba(244,170,255,0.2); opacity: 0; visibility: hidden; z-index: 1; }
-        .slider-track { display: flex; height: 100%; transition: transform 0.6s ease-in-out; }
+        .slider-track { display: flex; height: 100%; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
         .slide { min-width: 100%; height: 100%; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
         .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: var(--primary-pink); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 20; display: flex; align-items: center; justify-content: center; font-size: 16px; }
 
-        /* Grid */
+        /* PRODUCT GRID */
         .collection-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 20px 5% 100px; }
         @media (min-width: 768px) { .collection-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
-        .abaya-card { background: #0f0f0f; border-radius: 12px; overflow: hidden; border: 1px solid #1a1a1a; cursor: pointer; }
-        .abaya-card img { width: 100%; height: 240px; object-fit: cover; }
+        .abaya-card { background: #0f0f0f; border-radius: 12px; overflow: hidden; border: 1px solid #1a1a1a; cursor: pointer; position: relative; }
+        .abaya-card img { width: 100%; height: 240px; object-fit: cover; background: #111; }
+        .video-card-preview { width: 100%; height: 240px; position: relative; background: #111; display: flex; align-items: center; justify-content: center; }
+        .video-card-preview iframe, .video-card-preview video { width: 100%; height: 100%; border: none; pointer-events: none; }
+        .play-overlay-icon { position: absolute; inset: 0; display: flex; justify-content: center; align-items: center; background: rgba(0,0,0,0.3); color: var(--primary-pink); font-size: 32px; z-index: 2; }
+        .multi-badge { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.75); color: var(--primary-pink); padding: 3px 8px; border-radius: 12px; font-size: 10px; border: 1px solid var(--primary-pink); font-weight: bold; z-index: 3; }
 
-        /* SIZE BUTTONS VISIBILITY FIX */
+        /* GALLERY THUMBNAILS IN MODAL */
+        .gallery-thumbs { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 15px; padding-bottom: 5px; scrollbar-width: none; }
+        .gallery-thumbs::-webkit-scrollbar { display: none; }
+        .thumb-img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; border: 1px solid #333; cursor: pointer; flex-shrink: 0; opacity: 0.5; transition: 0.3s; background: #111; }
+        .thumb-img.active { border-color: var(--primary-pink); opacity: 1; transform: scale(1.05); }
+
+        /* INPUT STYLES FOR CHECKOUT FORM */
+        .form-group { margin-bottom: 10px; text-align: left; }
+        .form-label { display: block; font-size: 11px; color: var(--primary-pink); font-weight: bold; margin-bottom: 4px; }
+        .form-input { width: 100%; padding: 10px; background: #000; border: 1px solid #333; color: white; border-radius: 8px; font-size: 12px; outline: none; }
+        .form-input:focus { border-color: var(--primary-pink); }
+
+        /* LOCATION & PAYMENT SELECTION STYLES */
+        .location-select-box { display: flex; gap: 10px; margin-bottom: 15px; }
+        .loc-btn { flex: 1; padding: 10px; border: 1px solid rgba(244,170,255,0.3); background: rgba(255,255,255,0.05); color: white; border-radius: 10px; font-size: 11px; cursor: pointer; text-align: center; transition: 0.3s; }
+        .loc-btn.active { border-color: var(--primary-pink); background: rgba(244,170,255,0.2); font-weight: bold; color: var(--primary-pink); }
+        .checkout-summary { background: #111; border: 1px dashed rgba(244,170,255,0.3); padding: 12px; border-radius: 12px; margin-bottom: 15px; font-size: 12px; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 5px; color: #ccc; }
+        .summary-total { display: flex; justify-content: space-between; border-top: 1px solid #333; padding-top: 6px; font-weight: bold; color: var(--primary-pink); font-size: 14px; }
+        
+        .payment-btn-group { display: flex; flex-direction: column; gap: 10px; }
+        .pay-online-btn { width: 100%; background: linear-gradient(135deg, #00C853 0%, #00897B 100%); color: white; font-weight: bold; padding: 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 13px; box-shadow: 0 4px 15px rgba(0,200,83,0.3); transition: 0.3s; }
+        .pay-online-btn:active { transform: scale(0.98); }
+        .pay-badges { display: flex; align-items: center; gap: 6px; background: rgba(0,0,0,0.3); padding: 3px 8px; border-radius: 15px; font-size: 10px; border: 1px solid rgba(255,255,255,0.2); }
+        .pay-custom-logo { height: 18px; width: auto; object-fit: contain; }
+        .pay-wa-btn { width: 100%; background: var(--primary-pink); color: black; font-weight: bold; padding: 14px; border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; transition: 0.3s; }
+        .pay-wa-btn:active { transform: scale(0.98); }
+
+        /* CART DRAWER / MODAL STYLES */
+        .cart-item-card { display: flex; gap: 12px; align-items: center; background: #111; border: 1px solid #222; border-radius: 12px; padding: 10px; margin-bottom: 10px; position: relative; }
+        .cart-item-card img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; }
+        .cart-item-info { flex: 1; }
+        .cart-item-title { font-size: 12px; font-weight: bold; color: #fff; margin-bottom: 4px; }
+        .cart-item-meta { font-size: 11px; color: var(--primary-pink); }
+        .cart-item-price { font-size: 12px; font-weight: bold; color: #fff; margin-top: 4px; }
+        .remove-cart-item { color: #ff4d4d; font-size: 16px; cursor: pointer; padding: 5px; }
+
+        /* INVOICE MODAL STYLES */
+        #invoiceModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 6500; justify-content: center; align-items: center; padding: 20px; }
+        .invoice-card { background: #fff; color: #000; width: 100%; max-width: 450px; border-radius: 20px; padding: 25px; max-height: 90vh; overflow-y: auto; font-family: 'Tenor Sans', sans-serif; position: relative; }
+        .invoice-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f4aaff; padding-bottom: 12px; margin-bottom: 15px; }
+        .invoice-logo { height: 45px; width: auto; }
+        .invoice-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 12px; }
+        .invoice-table th, .invoice-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .invoice-table th { background: #f8f8f8; color: #000; font-weight: bold; }
+
+        /* ABOUT US SECTION */
+        #aboutSection { 
+            display: none; 
+            padding: 145px 5% 120px; 
+            text-align: center; 
+            width: 100%;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .about-card { 
+            max-width: 500px; 
+            margin: 0 auto; 
+            background: #0a0a0a; 
+            border: 1px solid rgba(244, 170, 255, 0.25); 
+            border-radius: 24px; 
+            padding: 35px 20px 30px; 
+            box-shadow: 0 10px 35px rgba(244,170,255,0.08); 
+        }
+        .md-img { 
+            width: 160px; 
+            height: 160px; 
+            object-fit: cover; 
+            border-radius: 50%; 
+            border: 3px solid var(--primary-pink); 
+            box-shadow: 0 0 25px rgba(244, 170, 255, 0.45); 
+            margin: 0 auto 20px; 
+            display: block;
+        }
+        .about-name { font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; color: white; margin-bottom: 8px; letter-spacing: 1px; }
+        .about-designation { color: var(--primary-pink); font-size: 13px; font-weight: 600; margin-bottom: 15px; }
+        .about-desc { color: #ccc; font-size: 12px; line-height: 1.6; margin-bottom: 22px; padding: 0 10px; }
+        .about-contact { display: inline-flex; align-items: center; gap: 8px; color: #fff; background: rgba(244, 170, 255, 0.15); border: 1px solid var(--primary-pink); padding: 10px 22px; border-radius: 30px; font-size: 13px; text-decoration: none; transition: 0.3s; }
+        .about-contact:active { background: var(--primary-pink); color: black; }
+
+        /* SOCIAL ICONS */
+        .about-socials { display: flex; justify-content: center; gap: 15px; margin-top: 25px; }
+        .about-social-icon { width: 42px; height: 42px; border-radius: 50%; background: #141414; border: 1px solid rgba(244, 170, 255, 0.4); display: flex; justify-content: center; align-items: center; color: var(--primary-pink); font-size: 18px; text-decoration: none; transition: 0.3s; }
+        .about-social-icon:active { background: var(--primary-pink); color: black; transform: scale(0.95); }
+
+        /* GLASS EFFECT ANIMATED TYPING BOX FOR ABOUT SECTION */
+        .glass-type-box {
+            max-width: 500px;
+            margin: 25px auto 0;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(244, 170, 255, 0.25);
+            border-radius: 20px;
+            padding: 22px 18px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-title {
+            color: var(--primary-pink);
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            border-bottom: 1px solid rgba(244, 170, 255, 0.2);
+            padding-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .typed-text-content {
+            color: #e0e0e0;
+            font-size: 12.5px;
+            line-height: 1.75;
+            min-height: 120px;
+            word-break: break-word;
+        }
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            background-color: var(--primary-pink);
+            margin-left: 2px;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* RELATED PRODUCTS */
+        .related-container { margin-top: 30px; border-top: 1px solid #222; padding-top: 20px; }
+        .related-scroll { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
+        .rel-card { min-width: 120px; background: #111; border-radius: 10px; overflow: hidden; border: 1px solid #222; cursor: pointer; }
+        .rel-card img { width: 100%; height: 130px; object-fit: cover; }
+        .rel-card p { font-size: 10px; padding: 6px; color: #fff; text-align: center; }
+
+        /* FULL VIEW SLIDER STYLES */
+        #fullView { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.98); z-index:6000; justify-content:center; align-items:center; overflow: hidden; touch-action: pan-y; }
+        .full-close { position:absolute; top:20px; right:20px; font-size:35px; color:white; cursor:pointer; z-index: 7000; background: rgba(0,0,0,0.5); width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
+        
+        .full-slider-container { width: 100%; height: 85vh; position: relative; display: flex; align-items: center; justify-content: center; }
+        .full-slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
+        .full-slide { min-width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; }
+        .full-slide img { max-width: 95%; max-height: 90vh; object-fit: contain; }
+        .full-slide iframe, .full-slide video { width: 95%; height: 85vh; border: none; border-radius: 15px; object-fit: contain; background: black; }
+
+        .full-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(244,170,255,0.2); color: var(--primary-pink); border: 1px solid var(--primary-pink); width: 45px; height: 45px; border-radius: 50%; cursor: pointer; z-index: 6500; display: flex; align-items: center; justify-content: center; font-size: 18px; backdrop-filter: blur(5px); }
+        .full-nav-btn.prev { left: 15px; }
+        .full-nav-btn.next { right: 15px; }
+
+        .full-dots { position: absolute; bottom: 25px; display: flex; gap: 8px; z-index: 6500; }
+        .full-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3); border: 1px solid var(--primary-pink); transition: 0.3s; cursor: pointer; }
+        .full-dot.active { background: var(--primary-pink); width: 22px; border-radius: 10px; }
+
+        /* SIZE OPTIONS */
         .size-opt { padding: 12px; border: 1px solid rgba(244,170,255,0.3); text-align: center; border-radius: 10px; cursor: pointer; font-size: 14px; color: white; background: rgba(255,255,255,0.05); transition: 0.3s; }
         .size-opt.selected { border-color: var(--primary-pink); background: var(--primary-pink); color: black; font-weight: bold; }
 
-        .cart-float { position: fixed; bottom: 30px; right: 25px; width: 60px; height: 60px; background: var(--deep-pink); border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 2000; box-shadow: 0 5px 15px rgba(255,0,255,0.3); }
+        .cart-float { position: fixed; bottom: 30px; right: 25px; width: 60px; height: 60px; background: var(--deep-pink); border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 2000; box-shadow: 0 5px 15px rgba(255,0,255,0.3); cursor: pointer; }
         #backToTop { position: fixed; bottom: 35px; left: 50%; transform: translateX(-50%); width: 45px; height: 45px; background: #222; border: 1px solid var(--primary-pink); color: var(--primary-pink); border-radius: 50%; display: none; justify-content: center; align-items: center; z-index: 1999; cursor: pointer; }
     </style>
 </head>
@@ -76,14 +249,14 @@
     <div id="preloader"><img src="icon.png" alt="Icon" class="loader-icon" id="loadIcon" referrerpolicy="no-referrer"></div>
 
     <nav>
-        <img src="logo.png" alt="Abaya Hub" class="logo-img" referrerpolicy="no-referrer">
+        <img src="logo.png" alt="Abaya Hub Uae" class="logo-img" referrerpolicy="no-referrer">
         <div class="nav-right">
             <button id="arBtn" onclick="toggleArabic()">ARABIC</button>
             <div class="social-links">
-                <a href="https://www.facebook.com/abayahubuae" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/abayahub_uae" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@abayahub.uae" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://wa.me/971568679647" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/abayahubuae" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/abayahub_uae" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@abayahub.uae" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://api.whatsapp.com/send?phone=971568679647" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </nav>
@@ -93,78 +266,299 @@
         <div class="category-bar" id="dynamicCats"></div>
     </div>
 
-    <div class="hero-area">
+    <div class="hero-area" id="heroArea">
         <div class="hero-dynamic-container">
             <div id="welcomeMessage">
-                <h2 class="welcome-title" id="wt">Welcome To Abaya Hub UAE</h2>
+                <h2 class="welcome-title" id="wt">Welcome To Abaya Hub Uae</h2>
                 <p id="ws" style="color:var(--primary-pink); font-style:italic; font-size:13px;">The Best Abaya Collections in UAE</p>
+                <p style="color:#aaa; font-size:11px; margin-top:5px;">Dubai, United Arab Emirates</p>
             </div>
-            
             <div class="slider-wrapper" id="heroSlider">
-                <button class="slider-btn" style="left:10px" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-btn" style="left:10px" onclick="manualMoveSlide(-1)" aria-label="Prev"><i class="fas fa-chevron-left"></i></button>
                 <div class="slider-track" id="sliderTrack"></div>
-                <button class="slider-btn" style="right:10px" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
+                <button class="slider-btn" style="right:10px" onclick="manualMoveSlide(1)" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
     </div>
 
-    <div class="collection-grid" id="productGrid"></div>
+    <main class="collection-grid" id="productGrid"></main>
 
+    <!-- ABOUT US SECTION -->
+    <section id="aboutSection">
+        <div class="about-card" id="aboutCard">
+            <img src="About/ceo.png" alt="RIADUL ISLAM" class="md-img" onerror="this.src='icon.png'" referrerpolicy="no-referrer">
+            <h3 class="about-name">RIADUL ISLAM</h3>
+            <p class="about-designation">CEO OF ABAYA HUB UAE</p>
+            <p class="about-desc">
+                We ship Abaya Direct from Our UAE factory to Worldwide 🌍✈️ Like USA, UK, Canada, Italy, France, Syria, Jordan, Palestine, Malaysia, Qatar, Tanzania, Ghana, Senegal.
+            </p>
+            <a href="tel:+971568679647" class="about-contact">
+                <i class="fas fa-phone-alt"></i> Contact: +971 56 867 9647
+            </a>
+            <div class="about-socials">
+                <a href="https://www.facebook.com/abayahubuae" target="_blank" class="about-social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/abayahub_uae" target="_blank" class="about-social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@abayahub.uae" target="_blank" class="about-social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://api.whatsapp.com/send?phone=971568679647" target="_blank" class="about-social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <!-- GLASS EFFECT ANIMATED TYPING BOX -->
+        <div class="glass-type-box">
+            <h4 class="glass-title"><i class="fas fa-gem"></i> ABOUT ABAYA HUB UAE</h4>
+            <div class="typed-text-content">
+                <span id="typedText"></span><span class="cursor"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT DETAIL MODAL -->
     <div id="productModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:5000; justify-content:center; align-items:center; padding:20px;">
-        <div style="background:#0a0a0a; width:100%; max-width:450px; border-radius:25px; padding:25px; border:1px solid #222; max-height:90vh; overflow-y:auto;">
+        <div id="modalContent" style="background:#0a0a0a; width:100%; max-width:450px; border-radius:25px; padding:25px; border:1px solid #222; max-height:90vh; overflow-y:auto;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
                 <h3 id="mName" style="color:var(--primary-pink); font-family:'Cinzel';"></h3>
                 <span onclick="closeModal()" style="cursor:pointer; font-size:24px;">&times;</span>
             </div>
-            <img id="mImg" src="" style="width:100%; height:260px; object-fit:cover; border-radius:15px; margin-bottom:15px; border:1px solid #111;" referrerpolicy="no-referrer">
+            
+            <div style="position:relative;" id="mMediaContainer">
+                <img id="mImg" src="" onclick="openFullView()" style="width:100%; height:280px; object-fit:cover; border-radius:15px; margin-bottom:10px; border:1px solid #111; cursor:zoom-in;" alt="Product Image" referrerpolicy="no-referrer">
+            </div>
+
+            <!-- GALLERY THUMBNAILS CONTAINER -->
+            <div id="mThumbs" class="gallery-thumbs"></div>
+
             <p id="mDesc" style="font-size:13px; color:#aaa; margin-bottom:15px; line-height:1.4;"></p>
             <p id="mSizeLabel" style="font-size:12px; font-weight:bold; color:var(--primary-pink); margin-bottom:10px;">SELECT SIZE:</p>
             <div id="mSizes" style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px;"></div>
             
             <button onclick="toggleCustom()" style="width:100%; border:1px dashed var(--primary-pink); padding:12px; border-radius:12px; color:white; background:transparent; font-size:11px; cursor:pointer;">USE CUSTOM MEASUREMENT</button>
+            
             <div id="mCustomBox" style="display:none; margin-top:15px; border-top:1px solid #222; padding-top:15px;">
-                <input type="text" id="cH" placeholder="Height (e.g. 165cm)" style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; border-radius:10px; margin-bottom:8px; font-size:12px;">
-                <input type="text" id="cC" placeholder="Chest (e.g. 44 inch)" style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; border-radius:10px; margin-bottom:8px; font-size:12px;">
+                <input type="text" id="cH" placeholder="Height" style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; border-radius:10px; margin-bottom:8px; font-size:12px;">
+                <input type="text" id="cC" placeholder="Chest" style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; border-radius:10px; margin-bottom:8px; font-size:12px;">
                 <input type="text" id="cL" placeholder="Length" style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; border-radius:10px; margin-bottom:8px; font-size:12px;">
             </div>
+
+            <!-- ADD TO BAG BUTTON -->
             <button style="width:100%; margin-top:20px; background:var(--primary-pink); color:black; font-weight:bold; padding:16px; border-radius:15px; border:none; cursor:pointer;" onclick="confirmOrder()">ADD TO BAG</button>
+
+            <div class="related-container">
+                <p style="font-size:12px; font-weight:bold; color:var(--primary-pink); margin-bottom:12px;">YOU MAY ALSO LIKE</p>
+                <div class="related-scroll" id="relatedSection"></div>
+            </div>
         </div>
     </div>
 
-    <button id="backToTop" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
-    <div class="cart-float" onclick="openWA()"><i class="fas fa-shopping-bag" style="color:white; font-size:24px;"></i><span id="cartCount" style="position:absolute; top:0; right:0; background:white; color:black; border-radius:50%; width:20px; height:20px; font-size:11px; display:flex; align-items:center; justify-content:center;">0</span></div>
+    <!-- CART SHOPPING BAG MODAL / DRAWER WITH CUSTOMER INPUT FORM -->
+    <div id="cartModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:5500; justify-content:center; align-items:center; padding:20px;">
+        <div id="cartModalContent" style="background:#0a0a0a; width:100%; max-width:480px; border-radius:25px; padding:25px; border:1px solid #222; max-height:90vh; overflow-y:auto;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #222; padding-bottom:10px;">
+                <h3 style="color:var(--primary-pink); font-family:'Cinzel';"><i class="fas fa-shopping-bag"></i> YOUR SHOPPING BAG</h3>
+                <span onclick="closeCartModal()" style="cursor:pointer; font-size:24px;">&times;</span>
+            </div>
+
+            <!-- CART ITEMS LIST -->
+            <div id="cartItemsContainer" style="margin-bottom:15px;"></div>
+
+            <!-- CUSTOMER DETAILS INPUT FORM -->
+            <p style="font-size:12px; font-weight:bold; color:var(--primary-pink); margin:15px 0 10px;">CUSTOMER DETAILS:</p>
+            <div class="form-group">
+                <label class="form-label">Full Name *</label>
+                <input type="text" id="cName" class="form-input" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label class="form-label">WhatsApp Number *</label>
+                <input type="tel" id="cWa" class="form-input" placeholder="e.g. +971 56 867 9647">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Contact Number</label>
+                <input type="tel" id="cPhone" class="form-input" placeholder="Alternative Phone">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" id="cEmail" class="form-input" placeholder="e.g. name@example.com">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Delivery Address / Villa / Building Number *</label>
+                <input type="text" id="cAddress" class="form-input" placeholder="Street, Villa/Building No, City">
+            </div>
+
+            <!-- DELIVERY LOCATION SELECTION -->
+            <p style="font-size:12px; font-weight:bold; color:var(--primary-pink); margin:15px 0 8px;">DELIVERY LOCATION:</p>
+            <div class="location-select-box">
+                <div class="loc-btn active" id="cartLocUaeBtn" onclick="selectCartLocation('uae')">Inside UAE (+30 AED)</div>
+                <div class="loc-btn" id="cartLocOutBtn" onclick="selectCartLocation('outside')">Outside UAE (Manual)</div>
+            </div>
+
+            <!-- CHECKOUT SUMMARY -->
+            <div class="checkout-summary">
+                <div class="summary-row"><span>Items Subtotal:</span><span id="cartSubtotal">AED 0</span></div>
+                <div class="summary-row"><span>Delivery Charge:</span><span id="cartDelivPrice">AED 30</span></div>
+                <div class="summary-total"><span>Total Price:</span><span id="cartTotalPrice">AED 30</span></div>
+            </div>
+
+            <!-- PAYMENT OPTIONS WITH PAY.PNG LOGO -->
+            <div class="payment-btn-group">
+                <button class="pay-online-btn" onclick="payOnlineCart()">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>PAY ONLINE</span>
+                    <span class="pay-badges">
+                        <img src="About/pay.png" alt="Pay" class="pay-custom-logo" onerror="this.style.display='none'">
+                        <span>PayBy / Card</span>
+                    </span>
+                </button>
+                <button class="pay-wa-btn" onclick="orderWhatsAppCart()"><i class="fab fa-whatsapp"></i> ORDER VIA WHATSAPP</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BRANDED INVOICE PREVIEW & PRINT/IMAGE MODAL -->
+    <div id="invoiceModal">
+        <div class="invoice-card" id="printableInvoice">
+            <div class="invoice-header">
+                <img src="logo.png" alt="Abaya Hub UAE" class="invoice-logo" onerror="this.src='icon.png'">
+                <div style="text-align:right;">
+                    <h3 style="font-size:16px; color:#000;">OFFICIAL INVOICE</h3>
+                    <p style="font-size:10px; color:#666;" id="invDate"></p>
+                </div>
+            </div>
+
+            <div style="font-size:11px; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px;">
+                <p><strong>Billed To:</strong> <span id="invName"></span></p>
+                <p><strong>WhatsApp:</strong> <span id="invWa"></span> | <strong>Phone:</strong> <span id="invPhone"></span></p>
+                <p><strong>Email:</strong> <span id="invEmail"></span></p>
+                <p><strong>Address:</strong> <span id="invAddress"></span></p>
+            </div>
+
+            <table class="invoice-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Size</th>
+                        <th style="text-align:right;">Price</th>
+                    </tr>
+                </thead>
+                <tbody id="invTableBody"></tbody>
+            </table>
+
+            <div style="text-align:right; font-size:12px; border-top:1px solid #ddd; padding-top:10px;">
+                <p style="color:#555;">Subtotal: <span id="invSubtotal"></span></p>
+                <p style="color:#555;">Delivery Charge: <span id="invDeliv"></span></p>
+                <h4 style="font-size:15px; color:#ff00ff; margin-top:5px;">Grand Total: <span id="invTotal"></span></h4>
+            </div>
+
+            <!-- TWO SEPARATE BUTTONS FOR SAVE PDF & SAVE AS IMAGE -->
+            <div style="margin-top:20px; display:flex; flex-direction:column; gap:8px;">
+                <div style="display:flex; gap:8px;">
+                    <button onclick="window.print()" style="flex:1; background:#000; color:#fff; border:none; padding:12px; border-radius:10px; font-weight:bold; cursor:pointer; font-size:11px;"><i class="fas fa-file-pdf"></i> SAVE PDF</button>
+                    <button onclick="saveInvoiceAsImage()" style="flex:1; background:#8e44ad; color:#fff; border:none; padding:12px; border-radius:10px; font-weight:bold; cursor:pointer; font-size:11px;"><i class="fas fa-image"></i> SAVE AS IMAGE</button>
+                </div>
+                
+                <!-- DEDICATED BUTTONS: PROCEED TO ONLINE PAYMENT & ORDER VIA WHATSAPP -->
+                <button onclick="redirectToOnlinePayment()" style="width:100%; background:linear-gradient(135deg, #00C853 0%, #00897B 100%); color:#fff; border:none; padding:14px; border-radius:10px; font-weight:bold; cursor:pointer; font-size:13px; box-shadow:0 4px 12px rgba(0,200,83,0.3);">
+                    PROCEED TO ONLINE PAYMENT 💳
+                </button>
+                <button onclick="redirectToWhatsAppOrder()" style="width:100%; background:var(--primary-pink); color:#000; border:none; padding:12px; border-radius:10px; font-weight:bold; cursor:pointer; font-size:12px;">
+                    <i class="fab fa-whatsapp"></i> ORDER ON WHATSAPP 🚀
+                </button>
+                
+                <button onclick="closeInvoiceModal()" style="background:#ddd; color:#000; border:none; padding:10px; border-radius:8px; cursor:pointer; font-size:11px;">Close & Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FULL VIEW WITH AUTO & MANUAL SLIDER -->
+    <div id="fullView">
+        <span class="full-close" onclick="closeFullView()">&times;</span>
+        
+        <button class="full-nav-btn prev" id="fullPrevBtn" onclick="moveFullSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="full-nav-btn next" id="fullNextBtn" onclick="moveFullSlide(1)"><i class="fas fa-chevron-right"></i></button>
+
+        <div class="full-slider-container" id="fullSliderContainer">
+            <div class="full-slider-track" id="fullSliderTrack"></div>
+        </div>
+
+        <div class="full-dots" id="fullDots"></div>
+    </div>
+
+    <button id="backToTop" onclick="scrollToTop()" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
+    
+    <!-- FLOATING CART BAG ICON -->
+    <div class="cart-float" onclick="openCartModal()"><i class="fas fa-shopping-bag" style="color:white; font-size:24px;"></i><span id="cartCount" style="position:absolute; top:0; right:0; background:white; color:black; border-radius:50%; width:20px; height:20px; font-size:11px; display:flex; align-items:center; justify-content:center;">0</span></div>
 
     <script>
-        const SHEET_ID = '1vXPi8s4eXqA_2X5Bo9iW6jOWqV2-cV70CN0jde2L7A0';
-        const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`;
-        let db = [], sliderData = [], cart = [], slideIdx = 0, sliderInterval, activeCat = 'All', isAr = false, selectedP = null, selectedS = '';
+        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRcfIhRIn62ZhMDIvsgrzW25MpMi_rvg-dAnMh6pG1EcNLyPZoJQ6RiieMEQQhBPdqHFsPkt9yxj6UP/pub?output=csv';
+        const PAYMENT_LINK = 'https://a.payby.com/qr/ccc/6E047599BBB76DA34FD78928492736A4';
 
-        // Converts Google Drive or Cloud URL to direct image stream
-        function formatImageURL(rawUrl) {
-            if (!rawUrl) return '';
-            let url = rawUrl.trim().replace(/^"|"$/g, '');
+        let db = [], sliderData = [], cart = [], slideIdx = 0, activeCat = 'All', isAr = false, selectedP = null, selectedS = '';
+        let sliderInterval = null;
+        let cartLocation = 'uae';
+
+        let fullSlideIdx = 0;
+        let fullSliderInterval = null;
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        let currentWaMsg = '';
+
+        const ORIGINAL_TITLE = "Abaya Hub Uae | Best Abaya Wholesaler in UAE";
+
+        function getDriveId(url) {
+            if(!url) return '';
+            const match1 = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+            const match2 = url.match(/id=([a-zA-Z0-9_-]+)/);
+            const match3 = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+            if (match1 && match1[1]) return match1[1];
+            if (match2 && match2[1]) return match2[1];
+            if (match3 && match3[1]) return match3[1];
+            return '';
+        }
+
+        function formatMediaURL(rawUrl, categoryName) {
+            if (!rawUrl) return null;
+            let url = rawUrl.trim().replace(/^["']|["']$/g, '').trim();
+            if(!url) return null;
+
+            const isVideoCategory = (categoryName || '').trim().toLowerCase() === 'video';
 
             if (url.includes('drive.google.com') || url.includes('docs.google.com')) {
-                let fileId = '';
-                const match1 = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-                const match2 = url.match(/id=([a-zA-Z0-9_-]+)/);
-                const match3 = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-                
-                if (match1 && match1[1]) fileId = match1[1];
-                else if (match2 && match2[1]) fileId = match2[1];
-                else if (match3 && match3[1]) fileId = match3[1];
-
+                let fileId = getDriveId(url);
                 if (fileId) {
-                    return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1200`;
+                    if (isVideoCategory) {
+                        return { type: 'video', url: `https://drive.google.com/file/d/${fileId}/preview`, raw: url };
+                    } else {
+                        return { type: 'image', url: `https://lh3.googleusercontent.com/d/${fileId}`, raw: url };
+                    }
                 }
             }
 
             if (url.includes('dropbox.com')) {
-                return url.replace('?dl=0', '?raw=1').replace('&dl=0', '&raw=1');
+                return { type: isVideoCategory ? 'video' : 'image', url: url.replace('?dl=0', '?raw=1').replace('&dl=0', '&raw=1'), raw: url };
             }
 
-            return url;
+            return { type: isVideoCategory ? 'video' : 'image', url: url, raw: url };
         }
+
+        function isSliderItem(item) {
+            if (!item) return false;
+            const cat = (item.cat || '').trim().toLowerCase();
+            const name = (item.name || '').trim().toLowerCase();
+            const id = (item.id || '').trim().toLowerCase();
+            const rawImg = (item.rawImg || '').trim().toLowerCase();
+            return cat === 'slider' || cat === 'banner' || name.startsWith('banner') || id.startsWith('banner') || rawImg.includes('banner/');
+        }
+
+        function pushState(title) { 
+            history.pushState({modalOpen: true}, null, ""); 
+            if(title) document.title = title + " | Abaya Hub Uae";
+        }
+        window.onpopstate = function(e) {
+            if (document.getElementById('invoiceModal').style.display === 'flex') closeInvoiceModal();
+            else if (document.getElementById('fullView').style.display === 'flex') closeFullView();
+            else if (document.getElementById('cartModal').style.display === 'flex') closeCartModal();
+            else if (document.getElementById('productModal').style.display === 'flex') closeModal();
+            document.title = ORIGINAL_TITLE;
+        };
 
         async function init() {
             try {
@@ -173,143 +567,550 @@
                 const rows = data.split(/\r?\n/).slice(1);
                 db = rows.map(row => {
                     const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                    const cat = cols[8]?.trim();
+                    let col0 = cols[0]?.trim().replace(/"/g, '') || '';
+                    let col1 = cols[1]?.trim().replace(/"/g, '') || '';
+                    let col2 = cols[2]?.trim().replace(/"/g, '') || '';
                     
-                    let col6 = cols[6] ? cols[6].replace(/"/g, '').trim() : '';
-                    let col5 = cols[5] ? cols[5].replace(/"/g, '').trim() : '';
-                    let rawImg = '';
-
-                    // Online web/drive link priority logic
-                    if (/^https?:\/\//i.test(col6)) {
-                        rawImg = col6;
-                    } else if (/^https?:\/\//i.test(col5)) {
-                        rawImg = col5;
-                    } else {
-                        // Fallback to local folder image path if drive/cloud URL is blank
-                        rawImg = (col6 && col6.length > 10) ? col6 : col5;
+                    let pName = col1;
+                    if (!pName || pName.includes('http') || pName.includes('drive.google')) {
+                        pName = col0 && !col0.includes('http') ? col0 : 'Abaya Collection';
                     }
 
-                    let img = formatImageURL(rawImg);
+                    const cat = (cols[8] || cols[7] || '').replace(/"/g, '').trim();
+                    let mediaList = [];
+                    cols.forEach(c => {
+                        let val = c ? c.replace(/"/g, '').trim() : '';
+                        if (val.toLowerCase().includes('icon.png')) return;
+                        if (val.includes('drive.google.com') || val.includes('http') || val.includes('.jpg') || val.includes('.png') || val.includes('.jpeg') || val.includes('.mp4') || val.includes('.mov')) {
+                            const rawArr = val.split(',');
+                            for (let u of rawArr) {
+                                let formatted = formatMediaURL(u, cat);
+                                if (formatted && formatted.url && !formatted.url.toLowerCase().includes('icon.png')) {
+                                    mediaList.push(formatted);
+                                }
+                            }
+                        }
+                    });
 
-                    if(cat === "Slider" && img && !img.includes('/') && !img.startsWith('http')) {
-                        img = "Banner/" + img;
+                    const uniqueMap = new Map();
+                    mediaList.forEach(m => uniqueMap.set(m.url, m));
+                    mediaList = Array.from(uniqueMap.values());
+
+                    const isSlider = cat.toLowerCase() === 'slider' || cat.toLowerCase() === 'banner' || pName.toLowerCase().startsWith('banner');
+                    if(isSlider && mediaList.length > 0 && !mediaList[0].url.includes('/') && !mediaList[0].url.startsWith('http')) {
+                        mediaList[0].url = "Banner/" + mediaList[0].url;
                     }
+
+                    let mainMedia = mediaList.length > 0 ? mediaList[0] : { type: 'image', url: 'icon.png' };
 
                     return { 
-                        id: cols[0]?.trim(), 
-                        name: cols[1]?.trim(), 
-                        price: cols[2]?.trim(), 
-                        image: img, 
+                        id: col0 || 'P-' + Math.random().toString(36).substr(2, 5), 
+                        name: pName, 
+                        price: parseFloat(col2.replace(/[^0-9.]/g, '')) || 0, 
+                        media: mediaList,
+                        images: mediaList.map(m => m.url),
+                        image: mainMedia.url,
+                        mainMedia: mainMedia,
                         cat: cat, 
-                        desc: cols[7]?.trim() || '', 
+                        desc: cols[7]?.trim().replace(/"/g, '') || '', 
                         sizes: cols[9]?.replace(/"/g, '').split(',') || [] 
                     };
-                }).filter(p => p.name);
+                }).filter(p => (p.name && !p.name.includes('http')) || isSliderItem(p));
 
-                sliderData = db.filter(p => p.cat === "Slider");
+                sliderData = db.filter(p => isSliderItem(p) && p.image);
                 if(sliderData.length > 0) {
                     document.getElementById('sliderTrack').innerHTML = sliderData.map(s => `
                         <div class="slide">
-                            <img src="${s.image}" onerror="this.src='logo.png'" referrerpolicy="no-referrer">
+                            <img src="${s.image}" alt="Banner" referrerpolicy="no-referrer" onerror="this.src='icon.png'">
                         </div>`).join('');
                 }
-                applyFilters();
+                
+                applyFilters(); 
                 generateCats();
-            } catch (e) { console.error("Sync Error:", e); }
-        }
-
-        function toggleArabic() {
-            isAr = !isAr;
-            document.getElementById('mainBody').classList.toggle('rtl');
-            document.getElementById('arBtn').innerText = isAr ? "ENGLISH" : "ARABIC";
-            init(); 
+            } catch (e) { console.error("Data load error:", e); }
         }
 
         function render(items) {
-            document.getElementById('productGrid').innerHTML = items.map(p => `
-                <div class="abaya-card" onclick="openModal('${p.id}')">
-                    <img src="${p.image}" onerror="this.src='logo.png'" referrerpolicy="no-referrer">
+            document.getElementById('productGrid').innerHTML = items.map(p => {
+                const isVid = p.mainMedia && p.mainMedia.type === 'video';
+                return `
+                <article class="abaya-card" onclick="openModal('${p.id}')">
+                    ${p.media && p.media.length > 1 ? `<span class="multi-badge"><i class="fas fa-layer-group"></i> ${p.media.length}</span>` : ''}
+                    ${isVid ? `
+                        <div class="video-card-preview">
+                            <span class="play-overlay-icon"><i class="fas fa-play-circle"></i></span>
+                            <iframe src="${p.image}" style="width:100%; height:100%; border:none; pointer-events:none;"></iframe>
+                        </div>
+                    ` : `
+                        <img src="${p.image}" alt="${p.name}" referrerpolicy="no-referrer" onerror="this.src='icon.png'">
+                    `}
                     <div style="padding:10px;"><p style="font-size:12px; color:#aaa;">${p.name}</p><p style="color:var(--primary-pink); font-weight:bold;">${isAr?'درهم':'AED'} ${p.price}</p></div>
-                </div>`).join('');
+                </article>`;
+            }).join('');
+        }
+
+        function renderModalMedia(item) {
+            if(item.type === 'video') {
+                return `<iframe src="${item.url}" style="width:100%; height:280px; border:none; border-radius:15px; margin-bottom:10px;" allow="autoplay" onclick="openFullView()"></iframe>`;
+            }
+            return `<img id="mImg" src="${item.url}" onclick="openFullView()" style="width:100%; height:280px; object-fit:cover; border-radius:15px; margin-bottom:10px; border:1px solid #111; cursor:zoom-in;" alt="Product Image" referrerpolicy="no-referrer" onerror="this.src='icon.png'">`;
         }
 
         function openModal(id) {
             selectedP = db.find(x => x.id === id); 
+            if(!selectedP) return;
             selectedS = '';
             document.getElementById('mName').innerText = selectedP.name;
-            document.getElementById('mImg').src = selectedP.image;
+            const mediaContainer = document.getElementById('mMediaContainer');
+            const initialMedia = selectedP.mainMedia || { type: 'image', url: selectedP.image };
+            mediaContainer.innerHTML = renderModalMedia(initialMedia);
             document.getElementById('mDesc').innerText = selectedP.desc;
-            
+
+            const thumbContainer = document.getElementById('mThumbs');
+            if (selectedP.media && selectedP.media.length > 1) {
+                thumbContainer.style.display = 'flex';
+                thumbContainer.innerHTML = selectedP.media.map((med, idx) => `
+                    <div class="thumb-img ${idx === 0 ? 'active' : ''}" onclick="switchModalMedia(${idx}, this)">
+                        ${med.type === 'video' ? '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#222;color:var(--primary-pink);"><i class="fas fa-video"></i></div>' : `<img src="${med.url}" style="width:100%; height:100%; object-fit:cover; border-radius:6px;" referrerpolicy="no-referrer" onerror="this.src='icon.png'">`}
+                    </div>
+                `).join('');
+            } else {
+                thumbContainer.style.display = 'none';
+            }
+
             let sizeHtml = '';
-            selectedP.sizes.forEach(s => {
-                if(s.trim()){
-                    sizeHtml += `<div class="size-opt" onclick="selectSize('${s.trim()}', this)">${s.trim()}</div>`;
-                }
-            });
+            selectedP.sizes.forEach(s => { if(s.trim()) sizeHtml += `<div class="size-opt" onclick="selectSize('${s.trim()}', this)">${s.trim()}</div>`; });
             document.getElementById('mSizes').innerHTML = sizeHtml;
-            
-            document.getElementById('productModal').style.display = 'flex';
             document.getElementById('mCustomBox').style.display = 'none';
+            document.getElementById('productModal').style.display = 'flex';
+            pushState(selectedP.name); 
+
+            gsap.fromTo("#modalContent", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.7)" });
+            const related = db.filter(p => !isSliderItem(p) && p.cat === selectedP.cat && p.id !== selectedP.id).slice(0, 8);
+            document.getElementById('relatedSection').innerHTML = related.map(r => `<div class="rel-card" onclick="openModal('${r.id}')"><img src="${r.image}" alt="${r.name}" referrerpolicy="no-referrer" onerror="this.src='icon.png'"><p>${r.name.substring(0,12)}..</p></div>`).join('');
+            document.getElementById('modalContent').scrollTop = 0;
         }
 
-        function selectSize(s, el) { 
-            selectedS = s; 
-            document.querySelectorAll('.size-opt').forEach(o => o.classList.remove('selected')); 
-            el.classList.add('selected'); 
+        function switchModalMedia(idx, el) {
+            const med = selectedP.media[idx];
+            const mediaContainer = document.getElementById('mMediaContainer');
+            mediaContainer.innerHTML = renderModalMedia(med);
+            document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
+            if(el) el.classList.add('active');
         }
 
-        function toggleCustom() { 
-            const b = document.getElementById('mCustomBox'); 
-            b.style.display = b.style.display === 'block' ? 'none' : 'block'; 
-            selectedS = 'Custom'; 
+        function selectSize(s, el) { selectedS = s; document.querySelectorAll('.size-opt').forEach(o => o.classList.remove('selected')); el.classList.add('selected'); }
+        function toggleCustom() { const b = document.getElementById('mCustomBox'); b.style.display = b.style.display==='block'?'none':'block'; selectedS='Custom'; }
+
+        function getSelectedFinalSize() {
+            if (selectedS === 'Custom') {
+                const h = document.getElementById('cH').value.trim();
+                const c = document.getElementById('cC').value.trim();
+                const l = document.getElementById('cL').value.trim();
+                return `Custom (Height: ${h||'-'}, Chest: ${c||'-'}, Length: ${l||'-'})`;
+            }
+            return selectedS;
         }
 
-        function closeModal() { document.getElementById('productModal').style.display = 'none'; }
-        
-        function confirmOrder() {
-            if(!selectedS) return alert("Select Size!");
-            let s = selectedS;
-            if(s === 'Custom') s = `H:${document.getElementById('cH').value}, C:${document.getElementById('cC').value}, L:${document.getElementById('cL').value}`;
-            cart.push({...selectedP, finalSize: s});
-            document.getElementById('cartCount').innerText = cart.length;
+        function confirmOrder() { 
+            if(!selectedS) return alert("Please select a Size!"); 
+            const finalSize = getSelectedFinalSize();
+            cart.push({ ...selectedP, finalSize: finalSize }); 
+            document.getElementById('cartCount').innerText = cart.length; 
             closeModal();
+            openCartModal(); 
         }
 
-        function generateCats() {
-            const cats = ['All', ...new Set(db.filter(p => p.cat && p.cat !== "Slider").map(p => p.cat))];
-            document.getElementById('dynamicCats').innerHTML = cats.map(c => `<button class="cat-btn ${c===activeCat?'active':''}" onclick="setCategory('${c}')">${c==='All'&&isAr?'الكل':c}</button>`).join('');
+        function openCartModal() {
+            if(cart.length === 0) return alert("Your Shopping Bag is Empty!");
+            renderCartItems();
+            selectCartLocation(cartLocation);
+            document.getElementById('cartModal').style.display = 'flex';
+            pushState("Shopping Bag");
+            gsap.fromTo("#cartModalContent", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3 });
+        }
+
+        function closeCartModal() {
+            gsap.to("#cartModalContent", { scale: 0.8, opacity: 0, duration: 0.2, onComplete: () => {
+                document.getElementById('cartModal').style.display = 'none';
+                document.title = ORIGINAL_TITLE;
+            }});
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cartItemsContainer');
+            if(cart.length === 0) {
+                container.innerHTML = `<p style="text-align:center; color:#888; padding:20px;">Bag is empty</p>`;
+                return;
+            }
+            container.innerHTML = cart.map((item, index) => `
+                <div class="cart-item-card">
+                    <img src="${item.image}" alt="${item.name}" referrerpolicy="no-referrer" onerror="this.src='icon.png'">
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-meta">Size: ${item.finalSize}</div>
+                        <div class="cart-item-price">AED ${item.price}</div>
+                    </div>
+                    <i class="fas fa-trash-alt remove-cart-item" onclick="removeFromCart(${index})"></i>
+                </div>
+            `).join('');
+            updateCartSummary();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            document.getElementById('cartCount').innerText = cart.length;
+            if(cart.length === 0) {
+                closeCartModal();
+            } else {
+                renderCartItems();
+            }
+        }
+
+        function selectCartLocation(loc) {
+            cartLocation = loc;
+            document.getElementById('cartLocUaeBtn').classList.toggle('active', loc === 'uae');
+            document.getElementById('cartLocOutBtn').classList.toggle('active', loc === 'outside');
+            updateCartSummary();
+        }
+
+        function updateCartSummary() {
+            const itemsSubtotal = cart.reduce((sum, item) => sum + (item.price || 0), 0);
+            const delivPrice = (cartLocation === 'uae' && cart.length > 0) ? 30 : 0;
+            const totalPrice = itemsSubtotal + delivPrice;
+
+            document.getElementById('cartSubtotal').innerText = `AED ${itemsSubtotal}`;
+            document.getElementById('cartDelivPrice').innerText = (cartLocation === 'uae') ? `AED 30` : `Manual`;
+            document.getElementById('cartTotalPrice').innerText = `AED ${totalPrice}`;
+        }
+
+        function getCustomerDetails() {
+            const name = document.getElementById('cName').value.trim();
+            const wa = document.getElementById('cWa').value.trim();
+            const phone = document.getElementById('cPhone').value.trim();
+            const email = document.getElementById('cEmail').value.trim();
+            const address = document.getElementById('cAddress').value.trim();
+
+            if (!name || !wa || !address) {
+                alert("Please fill required fields: Name, WhatsApp Number & Address!");
+                return null;
+            }
+            return { name, wa, phone, email, address };
+        }
+
+        function generateInvoiceModal(cust, waMsg) {
+            const itemsSubtotal = cart.reduce((sum, item) => sum + (item.price || 0), 0);
+            const delivPrice = (cartLocation === 'uae') ? 30 : 0;
+            const totalPrice = itemsSubtotal + delivPrice;
+
+            currentWaMsg = waMsg;
+
+            document.getElementById('invDate').innerText = "Date: " + new Date().toLocaleDateString();
+            document.getElementById('invName').innerText = cust.name;
+            document.getElementById('invWa').innerText = cust.wa;
+            document.getElementById('invPhone').innerText = cust.phone || '-';
+            document.getElementById('invEmail').innerText = cust.email || '-';
+            document.getElementById('invAddress').innerText = cust.address;
+
+            document.getElementById('invTableBody').innerHTML = cart.map(item => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.finalSize}</td>
+                    <td style="text-align:right;">AED ${item.price}</td>
+                </tr>
+            `).join('');
+
+            document.getElementById('invSubtotal').innerText = `AED ${itemsSubtotal}`;
+            document.getElementById('invDeliv').innerText = cartLocation === 'uae' ? `AED 30` : `Manual`;
+            document.getElementById('invTotal').innerText = `AED ${totalPrice}`;
+
+            document.getElementById('invoiceModal').style.display = 'flex';
+        }
+
+        function saveInvoiceAsImage() {
+            const card = document.getElementById('printableInvoice');
+            html2canvas(card, { scale: 2, useCORS: true }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'AbayaHub_Invoice.jpg';
+                link.href = canvas.toDataURL('image/jpeg', 0.95);
+                link.click();
+            });
+        }
+
+        /* SHORASHORI ONLINE PAYMENT LINK-E REDIRECT */
+        function redirectToOnlinePayment() {
+            window.open(PAYMENT_LINK, '_blank');
+        }
+
+        /* SHORASHORI WHATSAPP ORDER-E REDIRECT */
+        function redirectToWhatsAppOrder() {
+            const url = `https://api.whatsapp.com/send?phone=971568679647&text=${encodeURIComponent(currentWaMsg)}`;
+            window.location.href = url;
+        }
+
+        function closeInvoiceModal() {
+            document.getElementById('invoiceModal').style.display = 'none';
+        }
+
+        function payOnlineCart() {
+            if(cart.length === 0) return alert("Bag is empty!");
+            const cust = getCustomerDetails();
+            if (!cust) return;
+
+            const itemsSubtotal = cart.reduce((sum, item) => sum + (item.price || 0), 0);
+            const delivPrice = (cartLocation === 'uae') ? 30 : 0;
+            const totalPrice = itemsSubtotal + delivPrice;
+            const locText = cartLocation === 'uae' ? "Inside UAE" : "Outside UAE";
+
+            let msg = `*Payment Done (Online Order)* ✅\n\n`;
+            msg += `*Customer Details:*\n`;
+            msg += `• Name: ${cust.name}\n`;
+            msg += `• WhatsApp: ${cust.wa}\n`;
+            if(cust.phone) msg += `• Phone: ${cust.phone}\n`;
+            if(cust.email) msg += `• Email: ${cust.email}\n`;
+            msg += `• Address: ${cust.address}\n\n`;
+
+            msg += `*Order Summary (${cart.length} Abaya):*\n`;
+            cart.forEach((it, i) => {
+                msg += `${i+1}. ${it.name} - Size: ${it.finalSize} - Price: AED ${it.price}\n`;
+            });
+            msg += `\n*Delivery Location:* ${locText}\n`;
+            msg += `*Items Subtotal:* AED ${itemsSubtotal}\n`;
+            msg += `*Delivery Charge:* AED ${delivPrice}\n`;
+            msg += `*Total Paid:* AED ${totalPrice}\n\n`;
+            msg += `Assalamu Alaikum, I have completed the online payment via PayBy/Card for this order. Please confirm!`;
+
+            generateInvoiceModal(cust, msg);
+        }
+
+        function orderWhatsAppCart() {
+            if(cart.length === 0) return alert("Bag is empty!");
+            const cust = getCustomerDetails();
+            if (!cust) return;
+
+            const itemsSubtotal = cart.reduce((sum, item) => sum + (item.price || 0), 0);
+            const delivPrice = (cartLocation === 'uae') ? 30 : 0;
+            const totalPrice = itemsSubtotal + delivPrice;
+            const locText = cartLocation === 'uae' ? "Inside UAE" : "Outside UAE";
+
+            let msg = `Assalamu Alaikum, I want to Order These:\n\n`;
+            msg += `*Customer Details:*\n`;
+            msg += `• Name: ${cust.name}\n`;
+            msg += `• WhatsApp: ${cust.wa}\n`;
+            if(cust.phone) msg += `• Phone: ${cust.phone}\n`;
+            if(cust.email) msg += `• Email: ${cust.email}\n`;
+            msg += `• Address: ${cust.address}\n\n`;
+
+            msg += `*Order Items:*\n`;
+            cart.forEach((it, i) => {
+                msg += `${i+1}. ${it.name} - Size: ${it.finalSize} - Price: AED ${it.price}\n`;
+            });
+            msg += `\n*Delivery Location:* ${locText}\n`;
+            msg += `*Items Subtotal:* AED ${itemsSubtotal}\n`;
+            if(cartLocation === 'uae') {
+                msg += `*Delivery Charge:* AED ${delivPrice}\n`;
+                msg += `*Total Amount:* AED ${totalPrice}\n`;
+            } else {
+                msg += `*Delivery Charge:* Manual\n`;
+            }
+
+            generateInvoiceModal(cust, msg);
+        }
+
+        const fullView = document.getElementById('fullView');
+        const fullSliderTrack = document.getElementById('fullSliderTrack');
+        const fullDots = document.getElementById('fullDots');
+
+        function openFullView() {
+            if (!selectedP) return;
+            const mediaToDisplay = (selectedP.media && selectedP.media.length > 0) ? selectedP.media : [selectedP.mainMedia];
+            fullSliderTrack.innerHTML = mediaToDisplay.map(med => `
+                <div class="full-slide">
+                    ${med.type === 'video' ? `<iframe src="${med.url}" allow="autoplay" style="width:95%; height:85vh; border:none; border-radius:15px;"></iframe>` : `<img src="${med.url}" alt="${selectedP.name}" referrerpolicy="no-referrer" onerror="this.src='icon.png'">`}
+                </div>
+            `).join('');
+
+            if (mediaToDisplay.length > 1) {
+                fullDots.style.display = 'flex';
+                document.getElementById('fullPrevBtn').style.display = 'flex';
+                document.getElementById('fullNextBtn').style.display = 'flex';
+                fullDots.innerHTML = mediaToDisplay.map((_, idx) => `
+                    <div class="full-dot ${idx === 0 ? 'active' : ''}" onclick="goToFullSlide(${idx})"></div>
+                `).join('');
+            } else {
+                fullDots.style.display = 'none';
+                document.getElementById('fullPrevBtn').style.display = 'none';
+                document.getElementById('fullNextBtn').style.display = 'none';
+            }
+
+            fullSlideIdx = 0;
+            updateFullSliderPosition();
+            fullView.style.display = 'flex';
+            pushState(selectedP.name + " Zoom"); 
+            if (mediaToDisplay.length > 1) startFullSliderAutoPlay();
+        }
+
+        function closeFullView() { 
+            fullView.style.display = 'none'; 
+            if (fullSliderInterval) clearInterval(fullSliderInterval);
+        }
+
+        function moveFullSlide(dir) {
+            if (!selectedP) return;
+            const mediaToDisplay = selectedP.media && selectedP.media.length > 0 ? selectedP.media : [selectedP.mainMedia];
+            if (mediaToDisplay.length <= 1) return;
+            fullSlideIdx = (fullSlideIdx + dir + mediaToDisplay.length) % mediaToDisplay.length;
+            updateFullSliderPosition();
+            resetFullSliderAutoPlay();
+        }
+
+        function goToFullSlide(idx) {
+            fullSlideIdx = idx;
+            updateFullSliderPosition();
+            resetFullSliderAutoPlay();
+        }
+
+        function updateFullSliderPosition() {
+            fullSliderTrack.style.transform = `translateX(-${fullSlideIdx * 100}%)`;
+            const dots = document.querySelectorAll('.full-dot');
+            dots.forEach((dot, i) => {
+                if (i === fullSlideIdx) dot.classList.add('active');
+                else dot.classList.remove('active');
+            });
+        }
+
+        function startFullSliderAutoPlay() {
+            if (fullSliderInterval) clearInterval(fullSliderInterval);
+            fullSliderInterval = setInterval(() => { moveFullSlide(1); }, 8000);
+        }
+
+        function resetFullSliderAutoPlay() {
+            if (fullSliderInterval) clearInterval(fullSliderInterval);
+            const mediaToDisplay = selectedP && selectedP.media ? selectedP.media : [];
+            if (mediaToDisplay.length > 1) startFullSliderAutoPlay();
+        }
+
+        const fullContainer = document.getElementById('fullSliderContainer');
+        fullContainer.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+        fullContainer.addEventListener('touchend', e => { touchEndX = e.changedTouches[0].screenX; handleSwipe(); }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 40; 
+            if (touchEndX < touchStartX - swipeThreshold) moveFullSlide(1);
+            if (touchEndX > touchStartX + swipeThreshold) moveFullSlide(-1);
+        }
+
+        const typingTextArray = [
+            "Abaya Hub UAE is the most trusted and leading Abaya wholesaler operating directly from United Arab Emirates to worldwide.",
+            "Under the friendly and visionary leadership of CEO Riadul Islam, we deliver top-grade fabric, exquisite embroidery, and luxury stone work.",
+            "Riadul Islam maintains an exceptional relationship with international clients, offering personalized assistance and fast communication.",
+            "We guarantee the lowest factory wholesale prices without ever compromising on quality or craftsmanship.",
+            "Enjoy express worldwide shipping and direct factory fulfillment to USA, UK, Canada, Qatar, Malaysia, Europe, and beyond!"
+        ];
+        
+        let typeTextIdx = 0, typeCharIdx = 0, isDeleting = false, typingTimer = null;
+
+        function startTypewriter() {
+            const textElement = document.getElementById('typedText');
+            if (!textElement) return;
+            const currentSentence = typingTextArray[typeTextIdx];
+            if (isDeleting) {
+                textElement.innerText = currentSentence.substring(0, typeCharIdx - 1);
+                typeCharIdx--;
+            } else {
+                textElement.innerText = currentSentence.substring(0, typeCharIdx + 1);
+                typeCharIdx++;
+            }
+            let typeSpeed = isDeleting ? 20 : 40;
+            if (!isDeleting && typeCharIdx === currentSentence.length) {
+                typeSpeed = 2200; isDeleting = true;
+            } else if (isDeleting && typeCharIdx === 0) {
+                isDeleting = false; typeTextIdx = (typeTextIdx + 1) % typingTextArray.length; typeSpeed = 350;
+            }
+            typingTimer = setTimeout(startTypewriter, typeSpeed);
+        }
+
+        function triggerAboutAnimations() {
+            if (typingTimer) clearTimeout(typingTimer);
+            typeTextIdx = 0; typeCharIdx = 0; isDeleting = false;
+            startTypewriter();
+        }
+
+        function closeModal() { 
+            gsap.to("#modalContent", { scale: 0.8, opacity: 0, duration: 0.3, onComplete: () => {
+                document.getElementById('productModal').style.display = 'none';
+                document.title = ORIGINAL_TITLE;
+                if(history.state && history.state.modalOpen) history.back();
+            }});
         }
 
         function setCategory(cat) { activeCat = cat; applyFilters(); generateCats(); }
-        function applyFilters() {
-            const q = document.getElementById('searchBar').value.toLowerCase();
-            const filtered = db.filter(p => p.cat !== 'Slider' && (activeCat === 'All' || p.cat === activeCat) && p.name.toLowerCase().includes(q));
-            render(filtered);
+
+        function applyFilters() { 
+            const pGrid = document.getElementById('productGrid');
+            const abSection = document.getElementById('aboutSection');
+            const heroArea = document.getElementById('heroArea');
+            const searchBar = document.getElementById('searchBar');
+
+            if (activeCat === 'About') {
+                pGrid.style.display = 'none';
+                heroArea.style.display = 'none';
+                searchBar.style.display = 'none';
+                abSection.style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                gsap.fromTo("#aboutCard", { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" });
+                triggerAboutAnimations();
+                return;
+            }
+
+            pGrid.style.display = 'grid';
+            heroArea.style.display = 'block';
+            searchBar.style.display = 'block';
+            abSection.style.display = 'none';
+
+            const q = searchBar.value.toLowerCase(); 
+            const filtered = db.filter(p => !isSliderItem(p) && (activeCat === 'All' || p.cat.toLowerCase() === activeCat.toLowerCase()) && (p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q))); 
+            render(filtered); 
         }
 
-        function moveSlide(dir) {
-            slideIdx = (slideIdx + dir + sliderData.length) % sliderData.length;
-            document.getElementById('sliderTrack').style.transform = `translateX(-${slideIdx * 100}%)`;
+        function generateCats() { 
+            const dynamicList = ['All', ...new Set(db.filter(p => p.cat && !isSliderItem(p)).map(p => p.cat)), 'About']; 
+            document.getElementById('dynamicCats').innerHTML = dynamicList.map(c => `<button class="cat-btn ${c===activeCat?'active':''}" onclick="setCategory('${c}')">${c}</button>`).join(''); 
         }
 
-        function startAutoSlide() { sliderInterval = setInterval(() => { moveSlide(1); }, 10000); }
-        function openWA() { if(cart.length === 0) return alert("Empty!"); let m = "Assalamu Alaikum Abaya Hub UAE, Order:\n\n"; cart.forEach((it, i) => m += `${i+1}. ${it.name} - Size: ${it.finalSize} - Price: ${it.price}\n`); window.open(`https://wa.me/971568679647?text=${encodeURIComponent(m)}`); }
-        window.onscroll = () => { document.getElementById("backToTop").style.display = window.scrollY > 500 ? "flex" : "none"; };
+        function moveSlide(dir) { 
+            if(sliderData.length <= 1) return; 
+            slideIdx = (slideIdx + dir + sliderData.length) % sliderData.length; 
+            document.getElementById('sliderTrack').style.transform = `translateX(-${slideIdx * 100}%)`; 
+        }
+
+        function manualMoveSlide(dir) { moveSlide(dir); resetSliderAutoPlay(); }
+
+        function startSliderAutoPlay() {
+            if (sliderInterval) clearInterval(sliderInterval);
+            sliderInterval = setInterval(() => { moveSlide(1); }, 8000);
+        }
+
+        function resetSliderAutoPlay() { clearInterval(sliderInterval); startSliderAutoPlay(); }
+        function openWA() { openCartModal(); }
         function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        window.onscroll = () => { document.getElementById("backToTop").style.display = window.scrollY > 500 ? "flex" : "none"; };
 
         document.addEventListener("DOMContentLoaded", () => {
-            gsap.to("#loadIcon", { opacity: 1, scale: 1, duration: 1 });
-            setTimeout(() => {
-                gsap.to("#preloader", { opacity: 0, duration: 0.8, onComplete: () => {
-                    document.getElementById('preloader').style.display = 'none';
-                    let tl = gsap.timeline();
-                    tl.to("#welcomeMessage", { opacity: 1, y: 0, duration: 0.8 })
-                      .to("#welcomeMessage", { opacity: 0, duration: 0.6, delay: 4.2 })
-                      .to("#heroSlider", { visibility: "visible", opacity: 1, duration: 0.8, onComplete: startAutoSlide });
-                }});
-            }, 2000);
+            setTimeout(() => { 
+                gsap.to("#preloader", { 
+                    opacity: 0, 
+                    onComplete: () => { 
+                        document.getElementById('preloader').style.display = 'none'; 
+                        let tl = gsap.timeline(); 
+                        tl.to("#welcomeMessage", { opacity: 1, y: 0, duration: 0.8 })
+                          .to("#welcomeMessage", { opacity: 0, duration: 0.6, delay: 3 })
+                          .to("#heroSlider", { visibility: "visible", opacity: 1, onComplete: () => { startSliderAutoPlay(); } }); 
+                    } 
+                }); 
+            }, 1500);
             init();
         });
     </script>
 </body>
-</html>
+    </html>
