@@ -129,6 +129,8 @@
         .invoice-table th, .invoice-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         .invoice-table th { background: #f8f8f8; color: #000; font-weight: bold; }
 
+        .timer-badge { display: inline-block; font-size: 11px; font-weight: bold; color: #d32f2f; background: #ffebee; padding: 3px 8px; border-radius: 12px; margin-top: 4px; }
+
         /* ABOUT US SECTION */
         #aboutSection { 
             display: none; 
@@ -420,6 +422,7 @@
                 <div style="text-align:right;">
                     <h3 style="font-size:16px; color:#000;">OFFICIAL INVOICE</h3>
                     <p style="font-size:10px; color:#666;" id="invDate"></p>
+                    <span id="redirectTimerNotice" class="timer-badge">Auto redirecting in 8s...</span>
                 </div>
             </div>
 
@@ -490,6 +493,13 @@
         const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRcfIhRIn62ZhMDIvsgrzW25MpMi_rvg-dAnMh6pG1EcNLyPZoJQ6RiieMEQQhBPdqHFsPkt9yxj6UP/pub?output=csv';
         const PAYMENT_LINK = 'https://a.payby.com/qr/ccc/6E047599BBB76DA34FD78928492736A4';
 
+        /* TELEGRAM BOT & CHAT ID CONFIGURATION */
+        const TELEGRAM_BOT_TOKEN = '8747037164:AAFmGeC3tPl08iBhUNjbujbhDGhAls3C_7A';
+        const TELEGRAM_CHAT_ID = '6945585884';
+
+        /* TIMER CONFIGURATION (CHANGE THIS SECOND VALUE ANYTIME) */
+        const AUTO_REDIRECT_SECONDS = 8; 
+
         let db = [], sliderData = [], cart = [], slideIdx = 0, activeCat = 'All', isAr = false, selectedP = null, selectedS = '';
         let sliderInterval = null;
         let cartLocation = 'uae';
@@ -500,6 +510,9 @@
         let touchEndX = 0;
 
         let currentWaMsg = '';
+        let targetActionType = 'online'; // 'online' or 'whatsapp'
+        let invoiceTimer = null;
+        let countdownSeconds = AUTO_REDIRECT_SECONDS;
 
         const ORIGINAL_TITLE = "Abaya Hub Uae | Best Abaya Wholesaler in UAE";
 
@@ -798,12 +811,60 @@
             return { name, wa, phone, email, address };
         }
 
-        function generateInvoiceModal(cust, waMsg) {
+        /* DIRECT SEND INVOICE TO TELEGRAM BOT VIA CHAT ID */
+        async function sendInvoiceToTelegram(cust, actionType) {
+            const itemsSubtotal = cart.reduce((sum, item) => sum + (item.price || 0), 0);
+            const delivPrice = (cartLocation === 'uae') ? 30 : 0;
+            const totalPrice = itemsSubtotal + delivPrice;
+            const locText = cartLocation === 'uae' ? "Inside UAE (+30 AED)" : "Outside UAE (Manual)";
+            const actionText = actionType === 'online' ? '💳 ONLINE PAYMENT' : '🚀 WHATSAPP ORDER';
+
+            let tgText = `🛍️ *NEW INVOICE GENERATED - ABAYA HUB UAE*\n`;
+            tgText += `───────────────────────\n`;
+            tgText += `📌 *Action Method:* ${actionText}\n`;
+            tgText += `📅 *Date:* ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}\n\n`;
+
+            tgText += `👤 *CUSTOMER DETAILS:*\n`;
+            tgText += `• *Name:* ${cust.name}\n`;
+            tgText += `• *WhatsApp:* ${cust.wa}\n`;
+            tgText += `• *Phone:* ${cust.phone || 'N/A'}\n`;
+            tgText += `• *Email:* ${cust.email || 'N/A'}\n`;
+            tgText += `• *Address:* ${cust.address}\n\n`;
+
+            tgText += `📦 *ORDERED ITEMS (${cart.length}):*\n`;
+            cart.forEach((item, i) => {
+                tgText += `${i + 1}. *${item.name}*\n   Size: ${item.finalSize} | Price: AED ${item.price}\n`;
+            });
+
+            tgText += `\n💰 *PAYMENT SUMMARY:*\n`;
+            tgText += `• *Location:* ${locText}\n`;
+            tgText += `• *Subtotal:* AED ${itemsSubtotal}\n`;
+            tgText += `• *Delivery Charge:* ${cartLocation === 'uae' ? 'AED 30' : 'Manual'}\n`;
+            tgText += `• *Grand Total:* *AED ${totalPrice}*\n`;
+
+            const sendMessageUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            try {
+                await fetch(sendMessageUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: tgText,
+                        parse_mode: 'Markdown'
+                    })
+                });
+            } catch (err) {
+                console.error("Telegram Notification Error:", err);
+            }
+        }
+
+        function generateInvoiceModal(cust, waMsg, actionType) {
             const itemsSubtotal = cart.reduce((sum, item) => sum + (item.price || 0), 0);
             const delivPrice = (cartLocation === 'uae') ? 30 : 0;
             const totalPrice = itemsSubtotal + delivPrice;
 
             currentWaMsg = waMsg;
+            targetActionType = actionType; // 'online' or 'whatsapp'
 
             document.getElementById('invDate').innerText = "Date: " + new Date().toLocaleDateString();
             document.getElementById('invName').innerText = cust.name;
@@ -825,6 +886,41 @@
             document.getElementById('invTotal').innerText = `AED ${totalPrice}`;
 
             document.getElementById('invoiceModal').style.display = 'flex';
+
+            /* DIRECT TELEGRAM NOTIFICATION */
+            sendInvoiceToTelegram(cust, actionType);
+
+            /* START AUTO REDIRECT TIMER */
+            startInvoiceTimer();
+        }
+
+        function startInvoiceTimer() {
+            if (invoiceTimer) clearInterval(invoiceTimer);
+            countdownSeconds = AUTO_REDIRECT_SECONDS;
+            
+            const timerEl = document.getElementById('redirectTimerNotice');
+            if (timerEl) timerEl.innerText = `Auto redirecting in ${countdownSeconds}s...`;
+
+            invoiceTimer = setInterval(() => {
+                countdownSeconds--;
+                if (timerEl) timerEl.innerText = `Auto redirecting in ${countdownSeconds}s...`;
+
+                if (countdownSeconds <= 0) {
+                    clearInterval(invoiceTimer);
+                    if (targetActionType === 'online') {
+                        redirectToOnlinePayment();
+                    } else {
+                        redirectToWhatsAppOrder();
+                    }
+                }
+            }, 1000);
+        }
+
+        function clearInvoiceTimer() {
+            if (invoiceTimer) {
+                clearInterval(invoiceTimer);
+                invoiceTimer = null;
+            }
         }
 
         function saveInvoiceAsImage() {
@@ -839,16 +935,21 @@
 
         /* SHORASHORI ONLINE PAYMENT LINK-E REDIRECT */
         function redirectToOnlinePayment() {
+            clearInvoiceTimer();
             window.open(PAYMENT_LINK, '_blank');
+            closeInvoiceModal();
         }
 
         /* SHORASHORI WHATSAPP ORDER-E REDIRECT */
         function redirectToWhatsAppOrder() {
+            clearInvoiceTimer();
             const url = `https://api.whatsapp.com/send?phone=971568679647&text=${encodeURIComponent(currentWaMsg)}`;
             window.location.href = url;
+            closeInvoiceModal();
         }
 
         function closeInvoiceModal() {
+            clearInvoiceTimer();
             document.getElementById('invoiceModal').style.display = 'none';
         }
 
@@ -880,7 +981,7 @@
             msg += `*Total Paid:* AED ${totalPrice}\n\n`;
             msg += `Assalamu Alaikum, I have completed the online payment via PayBy/Card for this order. Please confirm!`;
 
-            generateInvoiceModal(cust, msg);
+            generateInvoiceModal(cust, msg, 'online');
         }
 
         function orderWhatsAppCart() {
@@ -914,7 +1015,7 @@
                 msg += `*Delivery Charge:* Manual\n`;
             }
 
-            generateInvoiceModal(cust, msg);
+            generateInvoiceModal(cust, msg, 'whatsapp');
         }
 
         const fullView = document.getElementById('fullView');
